@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10080"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -29,22 +28,25 @@
                                     <segment title="Second"/>
                                 </segments>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vjO-Xk-vxk">
-                                <rect key="frame" x="0.0" y="44" width="600" height="234"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WDc-TU-Qrr">
+                                <rect key="frame" x="0.0" y="43" width="600" height="235"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="WDc-TU-Qrr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0vA-xq-Owr"/>
                             <constraint firstItem="5wS-2I-17c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IVT-fo-MvK"/>
+                            <constraint firstItem="WDc-TU-Qrr" firstAttribute="top" secondItem="5wS-2I-17c" secondAttribute="bottom" constant="7" id="IWC-jo-JgF"/>
                             <constraint firstItem="5wS-2I-17c" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Qe2-kW-Ywq"/>
-                            <constraint firstItem="vjO-Xk-vxk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="ddS-Wt-fme"/>
-                            <constraint firstItem="vjO-Xk-vxk" firstAttribute="top" secondItem="5wS-2I-17c" secondAttribute="bottom" constant="8" id="jWP-f1-b1d"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vjO-Xk-vxk" secondAttribute="trailing" constant="-20" id="nyK-Wf-hmp"/>
+                            <constraint firstAttribute="trailing" secondItem="WDc-TU-Qrr" secondAttribute="trailing" id="c9U-tP-G77"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WDc-TU-Qrr" secondAttribute="bottom" id="k31-A9-bkj"/>
                             <constraint firstItem="5wS-2I-17c" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="qGP-8D-fuI"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vjO-Xk-vxk" secondAttribute="bottom" id="uPb-Rl-gOH"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="WDc-TU-Qrr" id="f35-Dy-XTT"/>
+                        <outlet property="segementControl" destination="5wS-2I-17c" id="lvY-8v-g8a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

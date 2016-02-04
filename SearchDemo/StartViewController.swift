@@ -7,6 +7,8 @@ class StartViewController: UIViewController {
     @IBOutlet var topDistanceConstraint: NSLayoutConstraint!
     @IBOutlet var containerView: UIView!
 
+    let hidesContentBeforeDismissingKeyboard = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,15 +51,29 @@ extension StartViewController: UISearchBarDelegate {
     }
 
     func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
-        searchBar.setShowsCancelButton(false, animated: true)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        moveSearchBarToCenter()
+        let runAnimations: () -> () = { [weak self] in
+            searchBar.setShowsCancelButton(false, animated: true)
+            self?.navigationController?.setNavigationBarHidden(false, animated: true)
+            self?.moveSearchBarToCenter()
+        }
+
+        if hidesContentBeforeDismissingKeyboard {
+            runAnimations()
+        } else {
+            hideContainedView {
+                runAnimations()
+            }
+        }
 
         return true
     }
 
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        hideContainedView {
+        if hidesContentBeforeDismissingKeyboard {
+            hideContainedView {
+                searchBar.resignFirstResponder()
+            }
+        } else {
             searchBar.resignFirstResponder()
         }
     }

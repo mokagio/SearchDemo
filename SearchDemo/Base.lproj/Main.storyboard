@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10102" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Qcf-Q0-eNC">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10080"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="search" id="BYZ-38-t0r" customClass="SearchViewController" customModule="SearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="278"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5wS-2I-17c">
+                                <rect key="frame" x="60" y="8" width="480" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="fk9-Fx-00G"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vjO-Xk-vxk">
+                                <rect key="frame" x="0.0" y="44" width="600" height="234"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5wS-2I-17c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IVT-fo-MvK"/>
+                            <constraint firstItem="5wS-2I-17c" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Qe2-kW-Ywq"/>
+                            <constraint firstItem="vjO-Xk-vxk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="ddS-Wt-fme"/>
+                            <constraint firstItem="vjO-Xk-vxk" firstAttribute="top" secondItem="5wS-2I-17c" secondAttribute="bottom" constant="8" id="jWP-f1-b1d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vjO-Xk-vxk" secondAttribute="trailing" constant="-20" id="nyK-Wf-hmp"/>
+                            <constraint firstItem="5wS-2I-17c" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="qGP-8D-fuI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vjO-Xk-vxk" secondAttribute="bottom" id="uPb-Rl-gOH"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2052" y="802"/>
+        </scene>
+        <!--Start View Controller-->
+        <scene sceneID="r7N-wf-7Dc">
+            <objects>
+                <viewController id="4Ho-FU-KxW" customClass="StartViewController" customModule="SearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VHw-9r-J9r"/>
+                        <viewControllerLayoutGuide type="bottom" id="lNN-Nk-FyL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cic-f4-HYz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EmZ-kK-aNY">
+                                <rect key="frame" x="0.0" y="322" width="600" height="278"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="embed" id="1Un-i9-0AC"/>
+                                </connections>
+                            </containerView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-0V-0jZ">
+                                <rect key="frame" x="0.0" y="278" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ors-oQ-3ha"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EmZ-kK-aNY" secondAttribute="trailing" id="9Ui-Xd-HwQ"/>
+                            <constraint firstItem="SbE-0V-0jZ" firstAttribute="centerX" secondItem="cic-f4-HYz" secondAttribute="centerX" id="MGH-sd-DZ0"/>
+                            <constraint firstItem="SbE-0V-0jZ" firstAttribute="centerX" secondItem="cic-f4-HYz" secondAttribute="centerX" id="SWX-Vy-Ncs"/>
+                            <constraint firstItem="lNN-Nk-FyL" firstAttribute="top" secondItem="EmZ-kK-aNY" secondAttribute="bottom" id="fJR-Ff-Ayx"/>
+                            <constraint firstItem="EmZ-kK-aNY" firstAttribute="top" secondItem="SbE-0V-0jZ" secondAttribute="bottom" id="nUr-fm-mbj"/>
+                            <constraint firstItem="SbE-0V-0jZ" firstAttribute="top" secondItem="VHw-9r-J9r" secondAttribute="bottom" priority="250" id="sXn-G3-21B"/>
+                            <constraint firstItem="SbE-0V-0jZ" firstAttribute="width" secondItem="cic-f4-HYz" secondAttribute="width" id="uT1-yi-fLZ"/>
+                            <constraint firstItem="SbE-0V-0jZ" firstAttribute="centerY" secondItem="cic-f4-HYz" secondAttribute="centerY" id="zOE-B1-zwf"/>
+                            <constraint firstItem="EmZ-kK-aNY" firstAttribute="leading" secondItem="cic-f4-HYz" secondAttribute="leading" id="zyE-ne-14N"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="SWX-Vy-Ncs"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="2Fo-Ws-Wxj"/>
+                    <connections>
+                        <outlet property="containerView" destination="EmZ-kK-aNY" id="zWv-gC-wdq"/>
+                        <outlet property="searchBar" destination="SbE-0V-0jZ" id="rpq-kc-Sec"/>
+                        <outlet property="topDistanceConstraint" destination="sXn-G3-21B" id="hYt-Hk-Lb4"/>
+                        <outlet property="verticalCenterConstraint" destination="zOE-B1-zwf" id="WNz-bl-t2u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e2F-g2-BHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1344" y="802"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gf0-qd-SBQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qcf-Q0-eNC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wp5-nF-Wql">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4Ho-FU-KxW" kind="relationship" relationship="rootViewController" id="4Wb-9w-xqn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZxX-EQ-YRZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="532" y="802"/>
+        </scene>
+    </scenes>
+</document>

@@ -51,24 +51,18 @@ extension StartViewController: UISearchBarDelegate {
     func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
         searchBar.setShowsCancelButton(false, animated: true)
         navigationController?.setNavigationBarHidden(false, animated: true)
-
-        topDistanceConstraint.constant = 0
-
-        UIView.animateWithDuration(0.3) { [weak self] in
-            guard let this = self else {
-                return
-            }
-
-            this.view.addConstraints([this.verticalCenterConstraint])
-            this.topDistanceConstraint.constant = this.view.frame.size.height / 2 - this.searchBar.frame.size.height / 2
-
-            this.view.layoutIfNeeded()
-        }
+        moveSearchBarToCenter()
 
         return true
     }
 
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        hideContainedView {
+            searchBar.resignFirstResponder()
+        }
+    }
+
+    private func hideContainedView(completion: () -> ()) {
         UIView.animateWithDuration(
             0.3,
             animations: { [weak self] in
@@ -81,7 +75,36 @@ extension StartViewController: UISearchBarDelegate {
                 this.view.layoutIfNeeded()
             },
             completion: { finished in
-                searchBar.resignFirstResponder()
+                guard finished else {
+                    return
+                }
+
+                completion()
+            }
+        )
+    }
+
+    private func moveSearchBarToCenter(completion: (() -> ())? = .None) {
+        topDistanceConstraint.constant = 0
+
+        UIView.animateWithDuration(
+            0.3,
+            animations: { [weak self] in
+                guard let this = self else {
+                    return
+                }
+
+                this.view.addConstraints([this.verticalCenterConstraint])
+                this.topDistanceConstraint.constant = this.view.frame.size.height / 2 - this.searchBar.frame.size.height / 2
+
+                this.view.layoutIfNeeded()
+            },
+            completion: { finished in
+                guard finished else {
+                    return
+                }
+                
+                completion?()
             }
         )
     }

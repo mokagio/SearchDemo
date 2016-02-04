@@ -13,6 +13,7 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
 
         searchBar.delegate = self
+        searchBar.placeholder = "What are you looking for?"
 
         containerView.layer.opacity = 0
     }

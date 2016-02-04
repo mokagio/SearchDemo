@@ -81,7 +81,7 @@ extension StartViewController: UISearchBarDelegate {
 
     private func hideContainedView(completion: () -> ()) {
         UIView.animateWithDuration(
-            0.3,
+            0.2,
             animations: { [weak self] in
                 guard let this = self else {
                     return

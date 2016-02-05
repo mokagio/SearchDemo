@@ -13,7 +13,61 @@
 		3F8381E41C5AA942009D153A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8381E31C5AA942009D153A /* Assets.xcassets */; };
 		3F8381E71C5AA942009D153A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8381E51C5AA942009D153A /* LaunchScreen.storyboard */; };
 		3F8381EF1C5C8890009D153A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8381EE1C5C8890009D153A /* SearchViewController.swift */; };
+		3FE579F71C64AB5D0020A17D /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE579F01C64AAEA0020A17D /* Cartography.framework */; };
+		3FE579F81C64AB5D0020A17D /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE579F01C64AAEA0020A17D /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3FE579EF1C64AAEA0020A17D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE579E81C64AAEA0020A17D /* Cartography.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 54C96A11195063CD000CDD27;
+			remoteInfo = "Cartography-iOS";
+		};
+		3FE579F11C64AAEA0020A17D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE579E81C64AAEA0020A17D /* Cartography.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 54C96A1C195063CD000CDD27;
+			remoteInfo = "Cartography-iOS-Tests";
+		};
+		3FE579F31C64AAEA0020A17D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE579E81C64AAEA0020A17D /* Cartography.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 54F6A838195C20C100313D24;
+			remoteInfo = "Cartography-Mac";
+		};
+		3FE579F51C64AAEA0020A17D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE579E81C64AAEA0020A17D /* Cartography.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 54F6A842195C20C200313D24;
+			remoteInfo = "Cartography-Mac-Tests";
+		};
+		3FE579F91C64AB5D0020A17D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE579E81C64AAEA0020A17D /* Cartography.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 54C96A10195063CD000CDD27;
+			remoteInfo = "Cartography-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3FE579FB1C64AB5D0020A17D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3FE579F81C64AB5D0020A17D /* Cartography.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3F8381D91C5AA942009D153A /* SearchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +78,7 @@
 		3F8381E61C5AA942009D153A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F8381E81C5AA942009D153A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8381EE1C5C8890009D153A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		3FE579E81C64AAEA0020A17D /* Cartography.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cartography.xcodeproj; path = Carthage/Checkouts/Cartography/Cartography.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE579F71C64AB5D0020A17D /* Cartography.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +96,7 @@
 		3F8381D01C5AA942009D153A = {
 			isa = PBXGroup;
 			children = (
+				3FE579E81C64AAEA0020A17D /* Cartography.xcodeproj */,
 				3F8381DB1C5AA942009D153A /* SearchDemo */,
 				3F8381DA1C5AA942009D153A /* Products */,
 			);
@@ -67,6 +124,17 @@
 			path = SearchDemo;
 			sourceTree = "<group>";
 		};
+		3FE579E91C64AAEA0020A17D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3FE579F01C64AAEA0020A17D /* Cartography.framework */,
+				3FE579F21C64AAEA0020A17D /* Cartography-iOS-Tests.xctest */,
+				3FE579F41C64AAEA0020A17D /* Cartography.framework */,
+				3FE579F61C64AAEA0020A17D /* Cartography-Mac-Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,10 +145,12 @@
 				3F8381D51C5AA942009D153A /* Sources */,
 				3F8381D61C5AA942009D153A /* Frameworks */,
 				3F8381D71C5AA942009D153A /* Resources */,
+				3FE579FB1C64AB5D0020A17D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3FE579FA1C64AB5D0020A17D /* PBXTargetDependency */,
 			);
 			name = SearchDemo;
 			productName = SearchDemo;
@@ -113,12 +183,49 @@
 			mainGroup = 3F8381D01C5AA942009D153A;
 			productRefGroup = 3F8381DA1C5AA942009D153A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3FE579E91C64AAEA0020A17D /* Products */;
+					ProjectRef = 3FE579E81C64AAEA0020A17D /* Cartography.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3F8381D81C5AA942009D153A /* SearchDemo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3FE579F01C64AAEA0020A17D /* Cartography.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Cartography.framework;
+			remoteRef = 3FE579EF1C64AAEA0020A17D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3FE579F21C64AAEA0020A17D /* Cartography-iOS-Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Cartography-iOS-Tests.xctest";
+			remoteRef = 3FE579F11C64AAEA0020A17D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3FE579F41C64AAEA0020A17D /* Cartography.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Cartography.framework;
+			remoteRef = 3FE579F31C64AAEA0020A17D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3FE579F61C64AAEA0020A17D /* Cartography-Mac-Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Cartography-Mac-Tests.xctest";
+			remoteRef = 3FE579F51C64AAEA0020A17D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3F8381D71C5AA942009D153A /* Resources */ = {
@@ -145,6 +252,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3FE579FA1C64AB5D0020A17D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Cartography-iOS";
+			targetProxy = 3FE579F91C64AB5D0020A17D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3F8381E01C5AA942009D153A /* Main.storyboard */ = {
@@ -253,6 +368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = SearchDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.umbrella.SearchDemo;
@@ -264,6 +380,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = SearchDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.umbrella.SearchDemo;
@@ -290,6 +407,7 @@
 				3F8381ED1C5AA942009D153A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,7 +1,7 @@
 import UIKit
 import Cartography
 
-class StartViewController: UIViewController {
+class SearchBarViewController: UIViewController {
 
     let searchBar = UISearchBar()
     let containerView = UIView()
@@ -20,7 +20,7 @@ class StartViewController: UIViewController {
         self.addChildViewController(viewController)
         containerView.addSubview(viewController.view)
         viewController.view.frame = containerView.bounds
-        // TODO: Is this necessary
+        // TODO: Is this necessary?
         viewController.view.setNeedsLayout()
         }
     }
@@ -81,7 +81,7 @@ class StartViewController: UIViewController {
     }
 }
 
-extension StartViewController: UISearchBarDelegate {
+extension SearchBarViewController: UISearchBarDelegate {
 
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
         searchBar.setShowsCancelButton(true, animated: true)

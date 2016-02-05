@@ -16,11 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        guard let window = window else {
-            fatalError()
-        }
-
-        let rootViewController = StartViewController()
+        let rootViewController = SearchBarViewController()
 
         let child = SearchViewController()
         child.pages = [
@@ -31,8 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let navigationController = UINavigationController(rootViewController: rootViewController)
 
-        window.rootViewController = navigationController
-        window.makeKeyAndVisible()
+        let _window = UIWindow()
+        _window.rootViewController = navigationController
+        _window.makeKeyAndVisible()
+
+        window = _window
 
         return true
     }

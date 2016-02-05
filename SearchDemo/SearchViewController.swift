@@ -64,7 +64,7 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: UIScrollViewDelegate
 
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
 
         guard pageIndex != segementControl.selectedSegmentIndex else {

@@ -2,7 +2,6 @@ import UIKit
 
 class SearchViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var scrollViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var segementControl: UISegmentedControl!

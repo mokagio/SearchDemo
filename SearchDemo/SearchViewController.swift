@@ -22,11 +22,6 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        pages = [
-            Page(title: "First", view: UITableView()),
-            Page(title: "Second", view: UITableView()),
-        ]
-
         segmentControl = UISegmentedControl(items: pages.map({ $0.title }))
         segmentControl.selectedSegmentIndex = 0
         view.addSubview(segmentControl)

@@ -16,6 +16,17 @@ class StartViewController: UIViewController {
         searchBar.placeholder = "What are you looking for?"
 
         containerView.layer.opacity = 0
+
+        let child = SearchViewController()
+        child.pages = [
+            SearchViewController.Page(title: "First", view: UITableView()),
+            SearchViewController.Page(title: "Second", view: UITableView()),
+        ]
+
+        self.addChildViewController(child)
+        containerView.addSubview(child.view)
+        child.view.frame = containerView.bounds
+        child.view.setNeedsLayout()
     }
 }
 

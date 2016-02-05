@@ -45,6 +45,7 @@
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="WDc-TU-Qrr" id="f35-Dy-XTT"/>
+                        <outlet property="scrollViewBottomConstraint" destination="k31-A9-bkj" id="baC-uG-ogd"/>
                         <outlet property="segementControl" destination="5wS-2I-17c" id="lvY-8v-g8a"/>
                     </connections>
                 </viewController>

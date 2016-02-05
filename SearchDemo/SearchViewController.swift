@@ -29,31 +29,27 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
         scrollView = UIScrollView()
         view.addSubview(scrollView)
 
-        constrain(segmentControl) { view in
-            guard let superView = view.superview else {
-                return
-            }
+        let segmentControlPadding: CGFloat = 8
 
-            // Height picked from the IB default. How to make it resilient to
-            // changes in iOS default values?
-            view.height == 28
-            view.width == superView.width * 0.8
-            view.top == superView.top + 8
-            view.centerX == superView.centerX
+        constrain(segmentControl) { view in
+            let superview = view.superview!
+
+            view.width == superview.width * 0.8
+            view.top == superview.top + segmentControlPadding
+            view.centerX == superview.centerX
+            // No need to set the height, the system enforses it :)
         }
 
         constrain(scrollView) { view in
-            guard let superView = view.superview else {
-                return
-            }
+            let superview = view.superview!
 
-            view.left == superView.left
-            view.right == superView.right
-            view.bottom == superView.bottom
+            view.left == superview.left
+            view.right == superview.right
+            view.bottom == superview.bottom
         }
 
         constrain(segmentControl, scrollView) { top, bottom in
-            top.bottom == bottom.top - 8
+            top.bottom == bottom.top - segmentControlPadding
         }
 
         segmentControl.addTarget(self, action: "switchTableView", forControlEvents: .ValueChanged)

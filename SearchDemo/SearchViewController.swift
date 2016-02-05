@@ -14,6 +14,7 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
         segementControl.addTarget(self, action: "switchTableView", forControlEvents: .ValueChanged)
 
         scrollView.pagingEnabled = true
+        scrollView.bounces = false
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
 

@@ -16,6 +16,7 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
 
         scrollView.pagingEnabled = true
         scrollView.delegate = self
+        scrollView.showsHorizontalScrollIndicator = false
 
         NSNotificationCenter.defaultCenter().addObserver(
             self,

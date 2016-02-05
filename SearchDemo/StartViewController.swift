@@ -11,8 +11,24 @@ class StartViewController: UIViewController {
 
     let hidesContentBeforeDismissingKeyboard = true
 
+    var childViewController: UIViewController? {
+        didSet {
+        guard let viewController = childViewController else {
+            return
+        }
+
+        self.addChildViewController(viewController)
+        containerView.addSubview(viewController.view)
+        viewController.view.frame = containerView.bounds
+        // TODO: Is this necessary
+        viewController.view.setNeedsLayout()
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = UIColor.whiteColor()
 
         view.addSubview(searchBar)
         view.addSubview(containerView)
@@ -62,17 +78,6 @@ class StartViewController: UIViewController {
         searchBar.placeholder = "What are you looking for?"
 
         containerView.layer.opacity = 0
-
-        let child = SearchViewController()
-        child.pages = [
-            SearchViewController.Page(title: "First", view: UITableView()),
-            SearchViewController.Page(title: "Second", view: UITableView()),
-        ]
-
-        self.addChildViewController(child)
-        containerView.addSubview(child.view)
-        child.view.frame = containerView.bounds
-        child.view.setNeedsLayout()
     }
 }
 

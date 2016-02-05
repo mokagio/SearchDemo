@@ -1,6 +1,6 @@
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var scrollView: UIScrollView!
@@ -13,6 +13,9 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         segementControl.addTarget(self, action: "switchTableView", forControlEvents: .ValueChanged)
+
+        scrollView.pagingEnabled = true
+        scrollView.delegate = self
     }
 
     override func viewDidLayoutSubviews() {
@@ -42,5 +45,17 @@ class SearchViewController: UIViewController {
         case _:
             break
         }
+    }
+
+    // MARK: UIScrollViewDelegate
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+
+        guard pageIndex != segementControl.selectedSegmentIndex else {
+            return
+        }
+
+        segementControl.selectedSegmentIndex = pageIndex
     }
 }

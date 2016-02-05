@@ -1,17 +1,67 @@
 import UIKit
+import Cartography
 
 class SearchViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var scrollViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet var segementControl: UISegmentedControl!
+    class Page {
+        let title: String
+        let view: UIView
 
-    var tableViews: [UITableView] = []
+        init(title: String, view: UIView) {
+            self.title = title
+            self.view = view
+        }
+    }
+
+    var scrollView: UIScrollView!
+    let constrainGroup = ConstraintGroup()
+    var segmentControl: UISegmentedControl!
+
+    var pages: [Page] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        segementControl.addTarget(self, action: "switchTableView", forControlEvents: .ValueChanged)
+        pages = [
+            Page(title: "First", view: UITableView()),
+            Page(title: "Second", view: UITableView()),
+        ]
+
+        segmentControl = UISegmentedControl(items: pages.map({ $0.title }))
+        segmentControl.selectedSegmentIndex = 0
+        view.addSubview(segmentControl)
+
+        scrollView = UIScrollView()
+        view.addSubview(scrollView)
+
+        constrain(segmentControl) { view in
+            guard let superView = view.superview else {
+                return
+            }
+
+            // Height picked from the IB default. How to make it resilient to
+            // changes in iOS default values?
+            view.height == 28
+            view.width == superView.width * 0.8
+            view.top == superView.top + 8
+            view.centerX == superView.centerX
+        }
+
+        constrain(scrollView) { view in
+            guard let superView = view.superview else {
+                return
+            }
+
+            view.left == superView.left
+            view.right == superView.right
+            view.bottom == superView.bottom
+        }
+
+        constrain(segmentControl, scrollView) { top, bottom in
+            top.bottom == bottom.top - 8
+        }
+
+        segmentControl.addTarget(self, action: "switchTableView", forControlEvents: .ValueChanged)
 
         scrollView.pagingEnabled = true
         scrollView.bounces = false
@@ -31,35 +81,36 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
             name: UIKeyboardWillHideNotification,
             object: .None
         )
-
-        (0..<segementControl.numberOfSegments).forEach { _ in
-            tableViews.append(UITableView())
-        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        tableViews.enumerate().forEach { index, tableView in
-            tableView.frame = CGRect(
-                origin: CGPoint(x: scrollView.frame.size.width * CGFloat(index), y: 0),
-                size: scrollView.frame.size
-            )
+        pages
+            .map { $0.view }
+            .enumerate()
+            .forEach { index, view in
+                view.frame = CGRect(
+                    origin: CGPoint(x: scrollView.frame.size.width * CGFloat(index), y: 0),
+                    size: scrollView.frame.size
+                )
+                // TODO: Is this the best call we can make?
+                view.layoutIfNeeded()
 
-            scrollView.addSubview(tableView)
+                scrollView.addSubview(view)
         }
 
         scrollView.contentSize = CGSize(
-            width: CGFloat(tableViews.count) * scrollView.frame.size.width,
+            width: CGFloat(pages.count) * scrollView.frame.size.width,
             height: scrollView.frame.size.height
         )
     }
 
     func switchTableView() {
-        guard segementControl.selectedSegmentIndex < tableViews.count else {
+        guard segmentControl.selectedSegmentIndex < pages.count else {
             return
         }
-        let targetTable = tableViews[segementControl.selectedSegmentIndex]
+        let targetTable = pages.map({ $0.view })[segmentControl.selectedSegmentIndex]
 
         scrollView.scrollRectToVisible(targetTable.frame, animated: true)
     }
@@ -69,11 +120,11 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
 
-        guard pageIndex != segementControl.selectedSegmentIndex else {
+        guard pageIndex != segmentControl.selectedSegmentIndex else {
             return
         }
 
-        segementControl.selectedSegmentIndex = pageIndex
+        segmentControl.selectedSegmentIndex = pageIndex
     }
 
     // MARK: Keyboard
@@ -83,12 +134,19 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
             return
         }
 
+        constrain(scrollView, replace: constrainGroup) { view in
+            guard let superView = view.superview else {
+                return
+            }
+
+            view.bottom == superView.bottom - keyboardHeight
+        }
+
         UIView.animateWithDuration(
             duration,
             delay: 0,
             options: [curveOption],
             animations: { [weak self] in
-                self?.scrollViewBottomConstraint.constant = keyboardHeight
                 self?.view.layoutIfNeeded()
             },
             completion: .None
@@ -100,12 +158,19 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
             return
         }
 
+        constrain(scrollView, replace: constrainGroup) { view in
+            guard let superView = view.superview else {
+                return
+            }
+
+            view.bottom == superView.bottom
+        }
+
         UIView.animateWithDuration(
             duration,
             delay: 0,
             options: [curveOption],
             animations: { [weak self] in
-                self?.scrollViewBottomConstraint.constant = 0
                 self?.view.layoutIfNeeded()
             },
             completion: .None

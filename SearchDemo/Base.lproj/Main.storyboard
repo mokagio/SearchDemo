@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10080"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Search View Controller-->
@@ -17,37 +16,8 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="278"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5wS-2I-17c">
-                                <rect key="frame" x="60" y="8" width="480" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="fk9-Fx-00G"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                            </segmentedControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WDc-TU-Qrr">
-                                <rect key="frame" x="0.0" y="43" width="600" height="235"/>
-                            </scrollView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="WDc-TU-Qrr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0vA-xq-Owr"/>
-                            <constraint firstItem="5wS-2I-17c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IVT-fo-MvK"/>
-                            <constraint firstItem="WDc-TU-Qrr" firstAttribute="top" secondItem="5wS-2I-17c" secondAttribute="bottom" constant="7" id="IWC-jo-JgF"/>
-                            <constraint firstItem="5wS-2I-17c" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Qe2-kW-Ywq"/>
-                            <constraint firstAttribute="trailing" secondItem="WDc-TU-Qrr" secondAttribute="trailing" id="c9U-tP-G77"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WDc-TU-Qrr" secondAttribute="bottom" id="k31-A9-bkj"/>
-                            <constraint firstItem="5wS-2I-17c" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="qGP-8D-fuI"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="scrollView" destination="WDc-TU-Qrr" id="f35-Dy-XTT"/>
-                        <outlet property="scrollViewBottomConstraint" destination="k31-A9-bkj" id="baC-uG-ogd"/>
-                        <outlet property="segementControl" destination="5wS-2I-17c" id="lvY-8v-g8a"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,8 +7,7 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var scrollViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var segementControl: UISegmentedControl!
 
-    let leftTableView = UITableView()
-    let rightTableView = UITableView()
+    var tableViews: [UITableView] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,35 +30,37 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
             name: UIKeyboardWillHideNotification,
             object: .None
         )
+
+        (0..<segementControl.numberOfSegments).forEach { _ in
+            tableViews.append(UITableView())
+        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        leftTableView.frame = CGRect(origin: .zero, size: scrollView.frame.size)
-        rightTableView.frame = CGRect(
-            origin: CGPoint(x: scrollView.frame.size.width, y: 0),
-            size: scrollView.frame.size
-        )
+        tableViews.enumerate().forEach { index, tableView in
+            tableView.frame = CGRect(
+                origin: CGPoint(x: scrollView.frame.size.width * CGFloat(index), y: 0),
+                size: scrollView.frame.size
+            )
+
+            scrollView.addSubview(tableView)
+        }
 
         scrollView.contentSize = CGSize(
-            width: 2 * scrollView.frame.size.width,
+            width: CGFloat(tableViews.count) * scrollView.frame.size.width,
             height: scrollView.frame.size.height
         )
-
-        scrollView.addSubview(leftTableView)
-        scrollView.addSubview(rightTableView)
     }
 
     func switchTableView() {
-        switch segementControl.selectedSegmentIndex {
-        case 0:
-            scrollView.scrollRectToVisible(leftTableView.frame, animated: true)
-        case 1:
-            scrollView.scrollRectToVisible(rightTableView.frame, animated: true)
-        case _:
-            break
+        guard segementControl.selectedSegmentIndex < tableViews.count else {
+            return
         }
+        let targetTable = tableViews[segementControl.selectedSegmentIndex]
+
+        scrollView.scrollRectToVisible(targetTable.frame, animated: true)
     }
 
     // MARK: UIScrollViewDelegate

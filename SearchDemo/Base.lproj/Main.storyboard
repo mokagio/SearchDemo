@@ -34,43 +34,9 @@
                     <view key="view" contentMode="scaleToFill" id="cic-f4-HYz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EmZ-kK-aNY">
-                                <rect key="frame" x="0.0" y="322" width="600" height="278"/>
-                            </containerView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="SbE-0V-0jZ">
-                                <rect key="frame" x="0.0" y="278" width="600" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Ors-oQ-3ha"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="EmZ-kK-aNY" secondAttribute="trailing" id="9Ui-Xd-HwQ"/>
-                            <constraint firstItem="SbE-0V-0jZ" firstAttribute="centerX" secondItem="cic-f4-HYz" secondAttribute="centerX" id="MGH-sd-DZ0"/>
-                            <constraint firstItem="SbE-0V-0jZ" firstAttribute="centerX" secondItem="cic-f4-HYz" secondAttribute="centerX" id="SWX-Vy-Ncs"/>
-                            <constraint firstItem="lNN-Nk-FyL" firstAttribute="top" secondItem="EmZ-kK-aNY" secondAttribute="bottom" id="fJR-Ff-Ayx"/>
-                            <constraint firstItem="EmZ-kK-aNY" firstAttribute="top" secondItem="SbE-0V-0jZ" secondAttribute="bottom" id="nUr-fm-mbj"/>
-                            <constraint firstItem="SbE-0V-0jZ" firstAttribute="top" secondItem="VHw-9r-J9r" secondAttribute="bottom" priority="250" id="sXn-G3-21B"/>
-                            <constraint firstItem="SbE-0V-0jZ" firstAttribute="width" secondItem="cic-f4-HYz" secondAttribute="width" id="uT1-yi-fLZ"/>
-                            <constraint firstItem="SbE-0V-0jZ" firstAttribute="centerY" secondItem="cic-f4-HYz" secondAttribute="centerY" id="zOE-B1-zwf"/>
-                            <constraint firstItem="EmZ-kK-aNY" firstAttribute="leading" secondItem="cic-f4-HYz" secondAttribute="leading" id="zyE-ne-14N"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="SWX-Vy-Ncs"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="2Fo-Ws-Wxj"/>
-                    <connections>
-                        <outlet property="containerView" destination="EmZ-kK-aNY" id="zWv-gC-wdq"/>
-                        <outlet property="searchBar" destination="SbE-0V-0jZ" id="rpq-kc-Sec"/>
-                        <outlet property="topDistanceConstraint" destination="sXn-G3-21B" id="hYt-Hk-Lb4"/>
-                        <outlet property="verticalCenterConstraint" destination="zOE-B1-zwf" id="WNz-bl-t2u"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2F-g2-BHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

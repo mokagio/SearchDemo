@@ -1,16 +1,62 @@
 import UIKit
+import Cartography
 
 class StartViewController: UIViewController {
 
-    @IBOutlet var searchBar: UISearchBar!
-    @IBOutlet var verticalCenterConstraint: NSLayoutConstraint!
-    @IBOutlet var topDistanceConstraint: NSLayoutConstraint!
-    @IBOutlet var containerView: UIView!
+    let searchBar = UISearchBar()
+    let containerView = UIView()
+
+    var verticalCenterConstraint: NSLayoutConstraint!
+    var topDistanceConstraint: NSLayoutConstraint!
 
     let hidesContentBeforeDismissingKeyboard = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.addSubview(searchBar)
+        view.addSubview(containerView)
+
+        constrain(searchBar) { view in
+            let superview = view.superview!
+
+            view.left == superview.left
+            view.right == superview.right
+            // No need to set the height, the system enforces it :)
+        }
+        constrain(containerView) { view in
+            let superview = view.superview!
+
+            view.left == superview.left
+            view.right == superview.right
+            view.bottom == superview.bottom
+        }
+        constrain(searchBar, containerView) { top, bottom in
+            bottom.top == top.bottom
+        }
+
+        verticalCenterConstraint = NSLayoutConstraint(
+            item: searchBar,
+            attribute: .CenterY,
+            relatedBy: .Equal,
+            toItem: view,
+            attribute: .CenterY,
+            multiplier: 1,
+            constant: 0
+        )
+        view.addConstraint(verticalCenterConstraint)
+
+        topDistanceConstraint = NSLayoutConstraint(
+            item: searchBar,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: topLayoutGuide,
+            attribute: .Bottom,
+            multiplier: 1,
+            constant: view.frame.size.height / 2 - searchBar.frame.size.height / 2
+        )
+        topDistanceConstraint.priority = UILayoutPriorityDefaultLow
+        view.addConstraint(topDistanceConstraint)
 
         searchBar.delegate = self
         searchBar.placeholder = "What are you looking for?"
@@ -36,8 +82,6 @@ extension StartViewController: UISearchBarDelegate {
         searchBar.setShowsCancelButton(true, animated: true)
 
         navigationController?.setNavigationBarHidden(true, animated: true)
-
-        topDistanceConstraint.constant = view.frame.size.height / 2 - searchBar.frame.size.height / 2
 
         UIView.animateKeyframesWithDuration(0.6, delay: 0, options: [], animations: {
             UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.5, animations: { [weak self] in

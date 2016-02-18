@@ -1,7 +1,7 @@
 import UIKit
 import Cartography
 
-class SearchViewController: UIViewController, UIScrollViewDelegate {
+class SegmentScrollViewController: UIViewController, UIScrollViewDelegate {
 
     class Page {
         let title: String
@@ -182,14 +182,14 @@ class SearchViewController: UIViewController, UIScrollViewDelegate {
             guard let keyboardFrame = (infoDictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() else {
                 return .None
             }
-
+            
             guard let rawValue = infoDictionary[UIKeyboardAnimationCurveUserInfoKey] as? Int else {
                 return .None
             }
             guard let animationCurve = UIViewAnimationCurve(rawValue: rawValue) else {
                 return .None
             }
-
+            
             return (
                 duration,
                 keyboardFrame.size.height,

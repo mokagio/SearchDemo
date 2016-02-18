@@ -18,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let rootViewController = SearchBarViewController()
 
-        let child = SearchViewController()
+        let child = SegmentScrollViewController()
         child.pages = [
-            SearchViewController.Page(title: "First", view: UITableView()),
-            SearchViewController.Page(title: "Second", view: UITableView()),
+            SegmentScrollViewController.Page(title: "First", view: UITableView()),
+            SegmentScrollViewController.Page(title: "Second", view: UITableView()),
         ]
         rootViewController.childViewController = child
 

@@ -19,6 +19,8 @@ class SegmentScrollViewController: UIViewController, UIScrollViewDelegate {
 
     var pages: [Page] = []
 
+    var keyboardHandler: KeyboardNotificationsHandler!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,18 +61,9 @@ class SegmentScrollViewController: UIViewController, UIScrollViewDelegate {
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
 
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "keyboardWillBeShown:",
-            name: UIKeyboardWillShowNotification,
-            object: .None
-        )
-
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "keyboardWillBeHide:",
-            name: UIKeyboardWillHideNotification,
-            object: .None
+        keyboardHandler = KeyboardNotificationsHandler(
+            willShowAction: keyboardWillBeShown,
+            willHideAction: { c, _, o in self.keyboardWillBeHidden(c, curveOption: o) }
         )
     }
 
@@ -120,11 +113,7 @@ class SegmentScrollViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: Keyboard
 
-    func keyboardWillBeShown(notification: NSNotification) {
-        guard let (duration, keyboardHeight, curveOption) = keyboardAnimationInfo(fromNotification: notification) else {
-            return
-        }
-
+    func keyboardWillBeShown(duration: NSTimeInterval, keyboardHeight: CGFloat, curveOption: UIViewAnimationOptions) {
         constrain(scrollView, replace: constrainGroup) { view in
             guard let superView = view.superview else {
                 return
@@ -144,11 +133,7 @@ class SegmentScrollViewController: UIViewController, UIScrollViewDelegate {
         )
     }
 
-    func keyboardWillBeHide(notification: NSNotification) {
-        guard let (duration, _, curveOption) = keyboardAnimationInfo(fromNotification: notification) else {
-            return
-        }
-
+    func keyboardWillBeHidden(duration: NSTimeInterval, curveOption: UIViewAnimationOptions) {
         constrain(scrollView, replace: constrainGroup) { view in
             guard let superView = view.superview else {
                 return
@@ -166,45 +151,5 @@ class SegmentScrollViewController: UIViewController, UIScrollViewDelegate {
             },
             completion: .None
         )
-    }
-
-    func keyboardAnimationInfo(fromNotification notification: NSNotification) -> (
-        NSTimeInterval, CGFloat, UIViewAnimationOptions
-        )? {
-            guard let infoDictionary = notification.userInfo else {
-                return .None
-            }
-
-            guard let duration = infoDictionary[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval else {
-                return .None
-            }
-
-            guard let keyboardFrame = (infoDictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() else {
-                return .None
-            }
-            
-            guard let rawValue = infoDictionary[UIKeyboardAnimationCurveUserInfoKey] as? Int else {
-                return .None
-            }
-            guard let animationCurve = UIViewAnimationCurve(rawValue: rawValue) else {
-                return .None
-            }
-            
-            return (
-                duration,
-                keyboardFrame.size.height,
-                UIViewAnimationOptions.option(withCurve: animationCurve)
-            )
-    }
-}
-
-extension UIViewAnimationOptions {
-    static func option(withCurve curve: UIViewAnimationCurve) -> UIViewAnimationOptions {
-        switch curve {
-        case .EaseIn: return UIViewAnimationOptions.CurveEaseIn
-        case .EaseInOut: return UIViewAnimationOptions.CurveEaseInOut
-        case .EaseOut: return UIViewAnimationOptions.CurveEaseOut
-        case .Linear: return UIViewAnimationOptions.CurveLinear
-        }
     }
 }

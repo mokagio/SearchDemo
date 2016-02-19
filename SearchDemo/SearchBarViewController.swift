@@ -25,6 +25,10 @@ class SearchBarViewController: UIViewController {
         }
     }
 
+    let constrainGroup = ConstraintGroup()
+
+    var keyboardHandler: KeyboardNotificationsHandler!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -78,6 +82,11 @@ class SearchBarViewController: UIViewController {
         searchBar.placeholder = "What are you looking for?"
 
         containerView.layer.opacity = 0
+
+        keyboardHandler = KeyboardNotificationsHandler(
+            willShowAction: keyboardWillBeShown,
+            willHideAction: { c, _, o in self.keyboardWillBeHidden(c, curveOption: o) }
+        )
     }
 }
 
@@ -183,6 +192,48 @@ extension SearchBarViewController: UISearchBarDelegate {
                 
                 completion?()
             }
+        )
+    }
+
+    // MARK: Keyboard
+
+    func keyboardWillBeShown(duration: NSTimeInterval, keyboardHeight: CGFloat, curveOption: UIViewAnimationOptions) {
+        constrain(containerView, replace: constrainGroup) { view in
+            guard let superView = view.superview else {
+                return
+            }
+
+            view.bottom == superView.bottom - keyboardHeight
+        }
+
+        UIView.animateWithDuration(
+            duration,
+            delay: 0,
+            options: [curveOption],
+            animations: { [weak self] in
+                self?.view.layoutIfNeeded()
+            },
+            completion: .None
+        )
+    }
+
+    func keyboardWillBeHidden(duration: NSTimeInterval, curveOption: UIViewAnimationOptions) {
+        constrain(containerView, replace: constrainGroup) { view in
+            guard let superView = view.superview else {
+                return
+            }
+
+            view.bottom == superView.bottom
+        }
+
+        UIView.animateWithDuration(
+            duration,
+            delay: 0,
+            options: [curveOption],
+            animations: { [weak self] in
+                self?.view.layoutIfNeeded()
+            },
+            completion: .None
         )
     }
 }

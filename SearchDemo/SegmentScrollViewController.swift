@@ -14,12 +14,9 @@ class SegmentScrollViewController: UIViewController, UIScrollViewDelegate {
     }
 
     var scrollView: UIScrollView!
-    let constrainGroup = ConstraintGroup()
     var segmentControl: UISegmentedControl!
 
     var pages: [Page] = []
-
-    var keyboardHandler: KeyboardNotificationsHandler!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,11 +57,6 @@ class SegmentScrollViewController: UIViewController, UIScrollViewDelegate {
         scrollView.bounces = false
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
-
-        keyboardHandler = KeyboardNotificationsHandler(
-            willShowAction: keyboardWillBeShown,
-            willHideAction: { c, _, o in self.keyboardWillBeHidden(c, curveOption: o) }
-        )
     }
 
     override func viewDidLayoutSubviews() {
@@ -109,47 +101,5 @@ class SegmentScrollViewController: UIViewController, UIScrollViewDelegate {
         }
 
         segmentControl.selectedSegmentIndex = pageIndex
-    }
-
-    // MARK: Keyboard
-
-    func keyboardWillBeShown(duration: NSTimeInterval, keyboardHeight: CGFloat, curveOption: UIViewAnimationOptions) {
-        constrain(scrollView, replace: constrainGroup) { view in
-            guard let superView = view.superview else {
-                return
-            }
-
-            view.bottom == superView.bottom - keyboardHeight
-        }
-
-        UIView.animateWithDuration(
-            duration,
-            delay: 0,
-            options: [curveOption],
-            animations: { [weak self] in
-                self?.view.layoutIfNeeded()
-            },
-            completion: .None
-        )
-    }
-
-    func keyboardWillBeHidden(duration: NSTimeInterval, curveOption: UIViewAnimationOptions) {
-        constrain(scrollView, replace: constrainGroup) { view in
-            guard let superView = view.superview else {
-                return
-            }
-
-            view.bottom == superView.bottom
-        }
-
-        UIView.animateWithDuration(
-            duration,
-            delay: 0,
-            options: [curveOption],
-            animations: { [weak self] in
-                self?.view.layoutIfNeeded()
-            },
-            completion: .None
-        )
     }
 }

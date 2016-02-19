@@ -82,23 +82,12 @@ class KeyboardNotificationsHandler {
     func keyboardAnimationInfo(fromNotification notification: NSNotification) -> (
         NSTimeInterval, CGFloat, UIViewAnimationOptions
         )? {
-            guard let infoDictionary = notification.userInfo else {
-                return .None
-            }
-
-            guard let duration = infoDictionary[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval else {
-                return .None
-            }
-
-            guard let keyboardFrame = (infoDictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() else {
-                return .None
-            }
-
-            guard let rawValue = infoDictionary[UIKeyboardAnimationCurveUserInfoKey] as? Int else {
-                return .None
-            }
-            guard let animationCurve = UIViewAnimationCurve(rawValue: rawValue) else {
-                return .None
+            guard
+                let duration = notification.keyboardAnimationDuration,
+                let keyboardFrame = notification.keyboardAnimationKeyboardFrame,
+                let animationCurve = notification.keyboardAnimationCurve
+                else {
+                    return .None
             }
 
             return (

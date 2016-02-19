@@ -14,6 +14,7 @@
 		3F8381E71C5AA942009D153A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8381E51C5AA942009D153A /* LaunchScreen.storyboard */; };
 		3F8381EF1C5C8890009D153A /* SegmentScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8381EE1C5C8890009D153A /* SegmentScrollViewController.swift */; };
 		3FCD1F111C76F7FF00001637 /* UIViewAnimationOptions+UIViewAnimationCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD1F101C76F7FF00001637 /* UIViewAnimationOptions+UIViewAnimationCurve.swift */; };
+		3FCD1F181C77146700001637 /* NSNotification+KeyboardAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD1F171C77146700001637 /* NSNotification+KeyboardAnimation.swift */; };
 		3FE579F71C64AB5D0020A17D /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE579F01C64AAEA0020A17D /* Cartography.framework */; };
 		3FE579F81C64AB5D0020A17D /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE579F01C64AAEA0020A17D /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3FE579FD1C64C7FE0020A17D /* KeyboardNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE579FC1C64C7FE0020A17D /* KeyboardNotificationsHandler.swift */; };
@@ -81,6 +82,7 @@
 		3F8381E81C5AA942009D153A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8381EE1C5C8890009D153A /* SegmentScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentScrollViewController.swift; sourceTree = "<group>"; };
 		3FCD1F101C76F7FF00001637 /* UIViewAnimationOptions+UIViewAnimationCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewAnimationOptions+UIViewAnimationCurve.swift"; sourceTree = "<group>"; };
+		3FCD1F171C77146700001637 /* NSNotification+KeyboardAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+KeyboardAnimation.swift"; sourceTree = "<group>"; };
 		3FE579E81C64AAEA0020A17D /* Cartography.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cartography.xcodeproj; path = Carthage/Checkouts/Cartography/Cartography.xcodeproj; sourceTree = "<group>"; };
 		3FE579FC1C64C7FE0020A17D /* KeyboardNotificationsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardNotificationsHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +128,7 @@
 				3F8381EE1C5C8890009D153A /* SegmentScrollViewController.swift */,
 				3FE579FC1C64C7FE0020A17D /* KeyboardNotificationsHandler.swift */,
 				3FCD1F101C76F7FF00001637 /* UIViewAnimationOptions+UIViewAnimationCurve.swift */,
+				3FCD1F171C77146700001637 /* NSNotification+KeyboardAnimation.swift */,
 			);
 			path = SearchDemo;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F8381EF1C5C8890009D153A /* SegmentScrollViewController.swift in Sources */,
+				3FCD1F181C77146700001637 /* NSNotification+KeyboardAnimation.swift in Sources */,
 				3F8381DF1C5AA942009D153A /* SearchBarViewController.swift in Sources */,
 				3FE579FD1C64C7FE0020A17D /* KeyboardNotificationsHandler.swift in Sources */,
 				3F8381DD1C5AA942009D153A /* AppDelegate.swift in Sources */,

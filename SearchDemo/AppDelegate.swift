@@ -12,16 +12,23 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let dataSource = DataSource()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         let rootViewController = SearchBarViewController()
 
+        let firstTableView = UITableView()
+        let secondTableView = UITableView()
+        [firstTableView, secondTableView].forEach { t in
+            t.registerClass(UITableViewCell.self, forCellReuseIdentifier: dataSource.cellIdentifier)
+            t.dataSource = dataSource
+        }
+
         let child = SegmentScrollViewController()
         child.pages = [
-            SegmentScrollViewController.Page(title: "First", view: UITableView()),
-            SegmentScrollViewController.Page(title: "Second", view: UITableView()),
+            SegmentScrollViewController.Page(title: "First", view: firstTableView),
+            SegmentScrollViewController.Page(title: "Second", view: secondTableView),
         ]
         rootViewController.childViewController = child
 
@@ -34,5 +41,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = _window
 
         return true
+    }
+}
+
+class DataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+
+    let cellIdentifier = "Cell"
+
+    @objc func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    @objc func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 16
+    }
+
+    @objc func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        cell.textLabel?.text = "\(indexPath.row)"
+        return cell
     }
 }

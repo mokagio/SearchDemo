@@ -1,5 +1,6 @@
 import UIKit
 import Cartography
+import KeyboardAnimationSubscriber
 
 class SearchBarViewController: UIViewController {
 
@@ -27,7 +28,7 @@ class SearchBarViewController: UIViewController {
 
     let constrainGroup = ConstraintGroup()
 
-    var keyboardHandler: KeyboardNotificationsHandler!
+    var keyboardHandler: KeyboardAnimationSubscriber!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +84,7 @@ class SearchBarViewController: UIViewController {
 
         containerView.layer.opacity = 0
 
-        keyboardHandler = KeyboardNotificationsHandler(
+        keyboardHandler = KeyboardAnimationSubscriber(
             willShowAction: keyboardWillBeShown,
             willHideAction: { c, _, o in self.keyboardWillBeHidden(c, curveOption: o) }
         )

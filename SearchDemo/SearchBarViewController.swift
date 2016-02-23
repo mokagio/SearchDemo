@@ -14,15 +14,14 @@ class SearchBarViewController: UIViewController {
 
     var childViewController: UIViewController? {
         didSet {
-        guard let viewController = childViewController else {
-            return
-        }
+            guard let viewController = childViewController else {
+                return
+            }
 
-        self.addChildViewController(viewController)
-        containerView.addSubview(viewController.view)
-        viewController.view.frame = containerView.bounds
-        // TODO: Is this necessary?
-        viewController.view.setNeedsLayout()
+            self.addChildViewController(viewController)
+            containerView.addSubview(viewController.view)
+            viewController.view.frame = containerView.bounds
+            viewController.didMoveToParentViewController(self)
         }
     }
 

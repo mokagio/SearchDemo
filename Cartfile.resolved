@@ -1,2 +1,3 @@
 github "robb/Cartography" "0.6.0"
 github "mokagio/KeyboardAnimationSubscriber" "0.0.2"
+github "mokagio/SearchBarViewController" "59ad054e9d80ab6ee0dee41ae6e8181989c0015a"
